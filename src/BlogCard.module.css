@@ -1,0 +1,16 @@
+.NewBlogCard {
+    background-color: lightblue;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px #ccc;
+    box-sizing: border-box;
+    margin: 16px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  @media (min-width: 992px) {
+    .NewBlogCard {
+        display: inline-block;
+        width: 45%;
+    }
+  }
