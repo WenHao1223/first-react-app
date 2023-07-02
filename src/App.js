@@ -1,10 +1,14 @@
 // import './App.css';
+import { Component } from 'react';
 import BlogHomePageCard from './BlogCard';
 import { isArrayEmpty as isMyArrayEmpty } from './utils';
 
-function App() {
+class App extends Component {
+  state = {
+    showBlogs: true
+  }
 
-  const blogArr = [
+  blogArr = [
     {
       id: 1,
       title: 'Blog Title 1',
@@ -22,7 +26,7 @@ function App() {
     }
   ];
 
-  const blogCards = isMyArrayEmpty(blogArr) ? [] : blogArr.map((item, pos) => {
+  blogCards = isMyArrayEmpty(this.blogArr) ? [] : this.blogArr.map((item, pos) => {
     // console.log(item);
 
     return (
@@ -34,11 +38,25 @@ function App() {
     );
   });
 
-  return (
-    <div className="App">
-      {blogCards}
-    </div>
-  );
+  onHideBtnClick = () => {
+    let updatedState = !this.state.showBlogs;
+    this.setState((prevState, prevProps) => {
+      return {showBlogs: !prevState.showBlogs}
+    });
+
+    console.log(this.state.showBlogs)
+  }
+
+  render(){
+    console.log('Render Called');
+    return (
+      <div className="App">
+        <button onClick={this.onHideBtnClick}>{this.state.showBlogs ? 'Hide List' : 'Show List'}</button>
+        <br></br>
+        {this.state.showBlogs ? this.blogCards : null}
+      </div>
+    );
+  }
 }
 
 export default App;
