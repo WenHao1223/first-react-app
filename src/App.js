@@ -4,28 +4,34 @@ import BlogHomePageCard from './BlogCard';
 import { isArrayEmpty as isMyArrayEmpty } from './utils';
 
 class App extends Component {
-  state = {
-    showBlogs: true,
-    blogArr: [
-      {
-        id: 1,
-        title: 'Blog Title 1',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci numquam laborum vitae beatae molestias quia praesentium nihil illum labore et, consequuntur nesciunt optio expedita laboriosam voluptas ducimus aliquid eligendi enim.',
-        likeCount: 0
-      },
-      {
-        id: 2,
-        title: 'Blog Title 2',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci numquam laborum vitae beatae molestias quia praesentium nihil illum labore et, consequuntur nesciunt optio expedita laboriosam voluptas ducimus aliquid eligendi enim.',
-        likeCount: 0
-      },
-      {
-        id: 3,
-        title: 'Blog Title 3',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci numquam laborum vitae beatae molestias quia praesentium nihil illum labore et, consequuntur nesciunt optio expedita laboriosam voluptas ducimus aliquid eligendi enim.',
-        likeCount: 0
-      }
-    ]
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showBlogs: true,
+      blogArr: [
+        {
+          id: 1,
+          title: 'Blog Title 1',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci numquam laborum vitae beatae molestias quia praesentium nihil illum labore et, consequuntur nesciunt optio expedita laboriosam voluptas ducimus aliquid eligendi enim.',
+          likeCount: 0
+        },
+        {
+          id: 2,
+          title: 'Blog Title 2',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci numquam laborum vitae beatae molestias quia praesentium nihil illum labore et, consequuntur nesciunt optio expedita laboriosam voluptas ducimus aliquid eligendi enim.',
+          likeCount: 0
+        },
+        {
+          id: 3,
+          title: 'Blog Title 3',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci numquam laborum vitae beatae molestias quia praesentium nihil illum labore et, consequuntur nesciunt optio expedita laboriosam voluptas ducimus aliquid eligendi enim.',
+          likeCount: 0
+        }
+      ]
+    }
+
+    console.log('Inside Constructor');
   }
 
   onLikeBtnClick = (pos) => {
@@ -37,7 +43,7 @@ class App extends Component {
 
     this.setState({blogArr: updatedBlogList});
 
-    console.log(updatedBlogObj);
+    // console.log(updatedBlogObj);
   }
 
   onHideBtnClick = () => {
@@ -45,14 +51,27 @@ class App extends Component {
     this.setState((prevState, prevProps) => {
       return {showBlogs: !prevState.showBlogs}
     });
+  }
 
-    console.log(this.state.showBlogs)
+  shouldComponentUpdate() {
+    console.log('Inside ShouldComponentUpdate');
+    return true;
+  }
+
+  componentDidMount() {
+    console.log('Component Did Mount');
+  }
+
+  componentWillUnmount() {
+    console.log('Component Unmounting');
+  }
+
+  componentDidUpdate() {
+    console.log('Inside ComponentDidUpdate');
   }
 
   render(){
-    console.log('Render Called');
-    console.log(this.state);
-
+    console.log('Render Called for AppJs');
     
     const blogCards = isMyArrayEmpty(this.state.blogArr) ? [] : this.state.blogArr.map((item, pos) => {
       // console.log(item);
